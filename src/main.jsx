@@ -1,15 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import RootLayout from './layouts/RootLayout.jsx';
-import Home from './components/Home/Home.jsx';
-import AllBooks from './components/AllBooks/AllBooks.jsx';
-import AuthProvider from './contexts/AuthProvider.jsx';
-
+import RootLayout from "./layouts/RootLayout.jsx";
+import Home from "./components/Home/Home.jsx";
+import AllBooks from "./components/AllBooks/AllBooks.jsx";
+import AuthProvider from "./contexts/AuthProvider.jsx";
+import Register from "./components/Register/Register.jsx";
+import AddBooks from "./components/AddBooks/AddBooks.jsx";
+import MyBooks from "./components/MyBooks/MyBooks.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,19 +20,31 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
       },
       {
-        path: 'allBooks',
-        Component: AllBooks
-      }
-    ]
+        path: "allBooks",
+        Component: AllBooks,
+      },
+      {
+        path: "register",
+        Component: Register,
+      },
+      {
+        path: "addBooks",
+        element: <AddBooks></AddBooks>,
+      },
+      {
+        path: "myBooks",
+        element: <MyBooks></MyBooks>,
+      },
+    ],
   },
 ]);
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-     <AuthProvider>
+    <AuthProvider>
       <RouterProvider router={router} />
-     </AuthProvider>
-  </StrictMode>,
-)
+    </AuthProvider>
+  </StrictMode>
+);
